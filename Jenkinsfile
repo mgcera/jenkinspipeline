@@ -30,5 +30,20 @@ pipeline {
                 input('Is sanity check good and ready to deploy?')
             }
          }
-    }
+         
+         stage ('Deploy') {
+            steps {
+                sh 'echo ha ha pass bhail' 
+            }
+            post {
+                success {
+                    sh 'echo deploy completed' 
+                }
+            }
+        }
+        
+        
+    }//End of Stages
+    
+    
 }
