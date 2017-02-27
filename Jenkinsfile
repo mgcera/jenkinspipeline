@@ -24,5 +24,11 @@ pipeline {
                 }
             }
         }
+        
+        stage ('Pramot to Deploy') {
+            steps {
+                input('Is sanity check good and ready to deploy?')
+            }
+         }
     }
 }
