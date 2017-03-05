@@ -17,7 +17,7 @@ pipeline {
 	    // Prepare the version by extracting major and minor number and creating a new number: [major].[minor]-[BUILDNUMBER]
 	    stage ('Set Version') {
 	    	steps {
-		    	script {
+		    	//script {
 				    def originalV = version();
 				    def major = originalV[0];
 				    def minor = originalV[1];
@@ -25,7 +25,7 @@ pipeline {
 				    if (v) {
 				       echo "Building version ${v}"
 				    }
-				}
+				//}
 		    // Update the project pom.xml files
 		    sh "${M2_HOME}/bin/mvn -B versions:set -DgenerateBackupPoms=false -DnewVersion=${v}"
 		    // Add the pom.xml files and create a commit+tag
