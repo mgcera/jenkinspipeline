@@ -27,7 +27,7 @@ pipeline {
 				    }
 				}
 		    // Update the project pom.xml files
-		    sh "${mvnHome}/bin/mvn -B versions:set -DgenerateBackupPoms=false -DnewVersion=${v}"
+		    sh "${M2_HOME}/bin/mvn -B versions:set -DgenerateBackupPoms=false -DnewVersion=${v}"
 		    // Add the pom.xml files and create a commit+tag
 		    sh 'git add .'
 		    sh "git commit -m 'Raise version'"
