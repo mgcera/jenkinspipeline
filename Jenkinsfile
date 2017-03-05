@@ -36,21 +36,7 @@ pipeline {
 		    sh "git tag v1.0"
 		    }
 	    }
-	    // Create the release build
-	    stage ('Release Build'){
-	    	steps{
-			    // Use the SSH Agent Plugin to forward the used ssh credentials 
-			    // from the jenkins master to the jenkins slave. Otherwise you may 
-			    // not be able to push/pull, clone
-			    //sshagent(['601b6ce9-37f7-439a-ac0b-8e368947d98d']) {
-		       // Invoke the maven build without tests and deploy the artifacts
-		       sh "${M2_HOME}/bin/mvn -B -DskipTests clean deploy"
-		       // Push the commit and the created tag
-		       sh "git push origin master"
-		       sh "git push origin v${v}"
-		       sh "git push origin v1.0"
-		       }
-	    }
+	   
   	} // End of Stages
 }
 
