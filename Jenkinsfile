@@ -16,13 +16,15 @@ pipeline {
 
 	    // Prepare the version by extracting major and minor number and creating a new number: [major].[minor]-[BUILDNUMBER]
 	    stage ('Set Version') {
-		    def originalV = version();
-		    def major = originalV[0];
-		    def minor = originalV[1];
-		    def v = "${major}.${minor}-${env.BUILD_NUMBER}"
-		    if (v) {
-		       echo "Building version ${v}"
-		    }
+	    	script {
+			    def originalV = version();
+			    def major = originalV[0];
+			    def minor = originalV[1];
+			    def v = "${major}.${minor}-${env.BUILD_NUMBER}"
+			    if (v) {
+			       echo "Building version ${v}"
+			    }
+			}
 		    // Update the project pom.xml files
 		    sh "${mvnHome}/bin/mvn -B versions:set -DgenerateBackupPoms=false -DnewVersion=${v}"
 		    // Add the pom.xml files and create a commit+tag
